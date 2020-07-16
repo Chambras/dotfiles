@@ -24,6 +24,9 @@ if [[ "$PROMPT" == "1" ]]; then
   fi
 fi
 
+# making sure .dotfiles folder exists. Mostly when using them in GitHub Codespaces.
+if [[ ! -f /.dotfiles ]]; then mv dotfiles .dotfiles; fi
+
 #
 # Create symlinks for all dotfiles
 #
