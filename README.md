@@ -5,7 +5,11 @@ For some reason I still do not like Zsh and I am not ready to jump into that, bu
 
 Might not be as good looking as other Zsh configurations I have seen around, but it gets the job done :)
 
+![bash1](https://user-images.githubusercontent.com/664891/87693527-149ce780-c75b-11ea-8816-9b6d1214c885.png)
 
+![bash2](https://user-images.githubusercontent.com/664891/87693525-149ce780-c75b-11ea-8882-17a01d4ee77c.png)
+
+![bash3](https://user-images.githubusercontent.com/664891/87693523-14045100-c75b-11ea-8abb-ccb831c5d1d1.png)
 
 ## Project Structure
 
@@ -55,3 +59,7 @@ cd ~
 ## Authors
 
 - Marcelo Zambrana
+
+## Resources
+
+These are based on the amazing repo from [Ben Coleman](https://github.com/benc-uk). His public [dotfiles](https://github.com/benc-uk/dotfiles) repo is a lot beter with Zsh support and a lot more, check it out!
