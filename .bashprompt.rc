@@ -65,10 +65,10 @@ function __serverLocation {
   where="Some Linux system 🤷"
   if [[ $(grep -oE 'gcc version ([0-9]+)' /proc/version | awk '{print $3}') -gt 5 ]] && [[ ! -z $WSL_INTEROP ]]; then where="WSL v2 💚";
   elif [[ $(grep -oE 'gcc version ([0-9]+)' /proc/version | awk '{print $3}') -lt 5 ]]; then where="WSL v1 💙";
-  elif [[ ! -z $ACC_TERM_ID ]]; then where="Azure Cloud Shell ($ACC_LOCATION)\e[37m☁"; 
-  elif [[ -f /.dockerenv ]]; then where="Docker container 📦"; 
-  elif [[ ! -z $REMOTE_CONTAINERS_IPC ]]; then where="Devcontainer 💻"; 
-  elif [[ "$(lsb_release -i)" =~ "Raspbian" ]]; then where="Raspberry Pi 🍇"; 
+  elif [[ ! -z $ACC_TERM_ID ]]; then where="Azure Cloud Shell ($ACC_LOCATION)\e[37m☁";
+  elif [[ -f /.dockerenv ]]; then where="Docker container 📦";
+  elif [[ ! -z $REMOTE_CONTAINERS_IPC ]]; then where="Devcontainer 💻";
+  elif [[ "$(lsb_release -i)" =~ "Raspbian" ]]; then where="Raspberry Pi 🍇";
   elif [[ "$(lsb_release -i)" =~ "Ubuntu" ]]; then where="Ubuntu 🐧"; fi
   echo $where
 }
