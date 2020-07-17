@@ -31,7 +31,7 @@ if [[ ! -f ~/.dotfiles ]]; then mv ~/dotfiles ~/.dotfiles; fi
 # Create symlinks for all dotfiles
 #
 echo -e "\n\e[38;5;45m»»» Creating dotfile symlinks \e[0m"
-for f in .gitconfig .profile .bashrc .bash_aliases .banner.rc .vimrc
+for f in .gitconfig .profile .bashrc .bash_aliases .banner.rc .vimrc .terraformrc
 do
   echo $f
   rm $HOME/$f 2> /dev/null
