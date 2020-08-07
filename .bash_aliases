@@ -19,6 +19,8 @@
   alias tfpr='terraform providers'
   alias tfg='terraform graph'
   alias tch='clear; echo -e; tff; tfv'
+  alias tsl='terraform state list'
+  alias tss='terraform state show'
 
 # packer
   alias pv='packer validate'
