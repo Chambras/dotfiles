@@ -21,6 +21,7 @@
   alias tch='clear; echo -e; tff; tfv'
   alias tsl='terraform state list'
   alias tss='terraform state show'
+  alias tft='terraform taint'
 
 # packer
   alias pv='packer validate'
@@ -46,14 +47,17 @@
 #  export -f az
 
 # Docker
+  alias dcl='docker context list'
   alias dcls='docker container ls --all'
   alias di='docker images'
   alias dils='docker images list'
   alias db='docker build'
+  alias dr='docker run -it --rm'
   alias drm='docker run -it --rm --name personaldev --mount type=bind,source=/c/Repos,target=/Repos'
   #Purging All Unused or Dangling Images, Containers, Volumes, and Networks. Be careful when to use it.
   alias dsp='docker system prune -a'
-  alias dver='docker -v'
+  alias dver='docker -v; docker version'
+  alias dinf='docker info'
 
 # kubernetes
   alias k='kubectl'
