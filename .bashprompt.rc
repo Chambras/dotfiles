@@ -137,7 +137,7 @@ __prompt_command()
   PS1+="$Blue $(__serverLocation) $Green\u$White@$Cyan\h"
   # show current directory
   PS1+=" 📂 $Yellow\W"
-    # show docker context
+  # show docker context
   PS1+="$(__docker_context)"
 
   # If wide enough show Azure subscription 
