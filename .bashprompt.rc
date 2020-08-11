@@ -84,6 +84,10 @@ function __azure_sub {
 if [[ ! -z $DEV_ENVIRONMENT ]]; then  echo "$SEP\e[38;5;15m☁️ \e[38;5;87m$DEV_ENVIRONMENT"; fi
 }
 
+function __docker_context {
+  if [[ ! -z $DOCKER_CONTEXT ]]; then  echo "$SEP\e[38;5;15m🐋 \e[38;5;87m$DOCKER_CONTEXT"; fi
+}
+
 SEP=" \e[94m┃ "
 
 # Show timestamp on the right hand side
@@ -115,7 +119,7 @@ __prompt_command()
   Save='\e[s' # Save cursor position
   Rest='\e[u' # Restore cursor to save point
 
-  # Add the ellapsed time and current date
+  # Add the elapsed time and current date
   timer_stop
 
 # Save cursor position, jump to right hand edge, then go left N columns where
@@ -133,6 +137,8 @@ __prompt_command()
   PS1+="$Blue $(__serverLocation) $Green\u$White@$Cyan\h"
   # show current directory
   PS1+=" 📂 $Yellow\W"
+    # show docker context
+  PS1+="$(__docker_context)"
 
   # If wide enough show Azure subscription 
   if (( $(tput cols) > 80 )); then
