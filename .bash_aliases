@@ -3,6 +3,7 @@
   alias sau='sudo apt update; sudo apt list --upgradable'
   alias sai='sudo apt upgrade'
   alias rld='source ~/.bashrc ~/.bash_aliases ~/.profile'
+  alias tsync='sudo hwclock -s'
 
 # terraform
   alias tfo='terraform output'
