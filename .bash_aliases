@@ -8,8 +8,11 @@
 # terraform
   alias tfo='terraform output'
   alias tfp='terraform plan -out run.plan'
+  alias tfpr='terraform plan'
   alias tfi='terraform init'
+  alias tfiu='terraform init -upgrade'
   alias tfa='terraform  apply --auto-approve  run.plan'
+  alias tfar='terraform apply --auto-approve'
   alias tfd='terraform destroy --force'
   alias tfv='terraform validate'
   alias tff='terraform fmt'
@@ -99,3 +102,4 @@
 
 # All tools Versions
   alias v='echo "***Terraform***"; tver; echo -e "\n***Ansible***"; aver; echo -e "\n***Packer***"; pver; echo -e "\n***Databricks CLI***"; dbver; echo -e "\n***Docker***"; dver; echo -e "\n***AZ CLI***"; az -v; echo -e "\n***Java***"; java -version; echo -e "\n***Git***"; git --version; echo -e "\n***Chef***"; chef -v; echo -e "\n***go***"; go version; echo -e "\n***GitHub CLI***"; gh --version; echo -e "\n***Kubectl***"; kubectl version; echo -e "\n***Helm***"; helm version; echo -e "\n***Go***"; go version; echo -e "\n"'
+  
