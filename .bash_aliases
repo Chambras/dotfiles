@@ -67,6 +67,7 @@
   alias k='kubectl'
 
 # Personal
+  alias gorepos='cd /c/Repos/'
   alias sa='cat ~/.bash_aliases'
   alias ea='vi ~/.bash_aliases'
   alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -100,6 +101,6 @@
 # GitHub CLI
   alias grc='gh repo create '
 
-# All tools Versions
+# All Versions
   alias v='echo "***Terraform***"; tver; echo -e "\n***Ansible***"; aver; echo -e "\n***Packer***"; pver; echo -e "\n***Databricks CLI***"; dbver; echo -e "\n***Docker***"; dver; echo -e "\n***AZ CLI***"; az -v; echo -e "\n***Java***"; java -version; echo -e "\n***Git***"; git --version; echo -e "\n***Chef***"; chef -v; echo -e "\n***go***"; go version; echo -e "\n***GitHub CLI***"; gh --version; echo -e "\n***Kubectl***"; kubectl version; echo -e "\n***Helm***"; helm version; echo -e "\n***Go***"; go version; echo -e "\n"'
   
