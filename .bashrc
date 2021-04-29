@@ -129,4 +129,4 @@ complete -C /usr/local/bin/terraform terraform
 if [ -f $HOME/.banner.rc ]; then source $HOME/.banner.rc; fi
 
 # Fancy powerlevel like prompt, remove if you don't like it, or is slow ==============
-if [ -f $HOME/.dotfiles/.bashprompt.rc ]; then source $HOME/.dotfiles/.bashprompt.rc; fi
+if [ -f $HOME/.bashprompt.rc ]; then source $HOME/.bashprompt.rc; fi

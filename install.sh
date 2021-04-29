@@ -37,7 +37,7 @@ if [[ ! -f ~/.dotfiles ]]; then mv ~/dotfiles ~/.dotfiles; fi
 # Create symlinks for all dotfiles
 #
 echo -e "\n\e[38;5;45m»»» Creating dotfile symlinks \e[0m"
-for f in .gitconfig .profile .bashrc .bash_aliases .banner.rc .vimrc .terraformrc
+for f in .gitconfig .profile .bashrc .bash_aliases .banner.rc .vimrc .terraformrc .bashprompt.rc
 do
   echo -e "\e[38;5;45m»»» 📃  ~/$f --> $DOTFILE_DIR/$f"
   rm -rf $HOME/$f
@@ -49,4 +49,4 @@ ln -s $DOTFILE_DIR/.env.rc $HOME/.bashe
 
 # Copying vim theme
 mkdir -p ~/.vim/colors/
-cp $DOTFILE_DIR/dotfiles/lib/badwolf.vim $HOME/.vim/colors/
+cp $DOTFILE_DIR/lib/badwolf.vim $HOME/.vim/colors/
