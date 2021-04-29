@@ -18,6 +18,9 @@ fi
 if [[ -f /.dockerenv ]]; then
   PROMPT="0"
 fi
+if [[ $CODESPACES ]]; then
+  PROMPT="0"
+fi
 
 if [[ "$PROMPT" == "1" ]]; then
   read -p "Are you sure? " -n 1 -r
@@ -46,4 +49,4 @@ ln -s $DOTFILE_DIR/.env.rc $HOME/.bashe
 
 # Copying vim theme
 mkdir -p ~/.vim/colors/
-cp $HOME/.dotfiles/lib/badwolf.vim $HOME/.vim/colors/
+cp $DOTFILE_DIR/dotfiles/lib/badwolf.vim $HOME/.vim/colors/
