@@ -22,7 +22,7 @@
   alias tfh='terraform -help'
   alias tfpr='terraform providers'
   alias tfg='terraform graph'
-  alias tch='clear; echo -e; tff; tfv'
+  alias tch='clear; echo -e "formatting..."; tff; echo -e "validating..."; tfv; echo -e "tflinting..."; tflint'
   alias tsl='terraform state list'
   alias tss='terraform state show'
   alias tft='terraform taint'

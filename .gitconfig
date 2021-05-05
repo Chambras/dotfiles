@@ -3,7 +3,7 @@
 	email = marcech.am@gmail.com
 [alias]
 	co = checkout
-	com = checkout master
+	com = checkout main
 	cod = checkout dev
 	ci = commit -m
 	st = status
@@ -18,7 +18,7 @@
 	ln = log --graph --oneline --all
 	conf = config --global -e
 	cob = checkout -b
-	pom = push -u origin master
+	pom = push -u origin main
 	pod = push -u origin dev
 	save = !git add -A && git commit -m 'SAVEPOINT'
 	la = "!git config -l | grep alias | cut -c 7-"
@@ -30,3 +30,5 @@
 [core]
   autocrlf = input
   editor = vi
+[init]
+	defaultBranch = main
