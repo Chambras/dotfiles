@@ -3,7 +3,7 @@
 	email = marcech.am@gmail.com
 [alias]
 	co = checkout
-	com = checkout master
+	com = checkout main
 	cod = checkout dev
 	ci = commit -m
 	st = status
