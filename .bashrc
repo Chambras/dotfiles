@@ -125,6 +125,8 @@ HISTTIMEFORMAT="%F %T "
 
 complete -C /usr/local/bin/terraform terraform
 
+eval "$(gh completion -s bash)"
+
 # Login banner thing ==============
 if [ -f $HOME/.banner.rc ]; then source $HOME/.banner.rc; fi
 

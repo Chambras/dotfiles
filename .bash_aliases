@@ -2,7 +2,7 @@
   alias c='clear'
   alias sau='sudo apt update; sudo apt list --upgradable'
   alias sai='sudo apt upgrade'
-  alias rld='source ~/.bashrc ~/.bash_aliases ~/.profile'
+  alias rld='source ~/.bashrc; source ~/.bash_aliases; source ~/.profile'
   alias tsync='sudo hwclock -s'
 
 # terraform
@@ -49,6 +49,12 @@
 #          "az.cmd" "$@"
 #  }
 #  export -f az
+
+# Azure
+  alias agl='az group list -o table'
+  alias aal='az account list -o table'
+  alias acl='az cloud list -o table'
+  alias avl='az vm list -o table'
 
 # Docker
   alias dcl='docker context list'
@@ -103,4 +109,3 @@
 
 # All Versions
   alias v='echo "***Terraform***"; tver; echo -e "\n***Ansible***"; aver; echo -e "\n***Packer***"; pver; echo -e "\n***Databricks CLI***"; dbver; echo -e "\n***Docker***"; dver; echo -e "\n***AZ CLI***"; az -v; echo -e "\n***Java***"; java -version; echo -e "\n***Git***"; git --version; echo -e "\n***Chef***"; chef -v; echo -e "\n***go***"; go version; echo -e "\n***GitHub CLI***"; gh --version; echo -e "\n***Kubectl***"; kubectl version; echo -e "\n***Helm***"; helm version; echo -e "\n***Go***"; go version; echo -e "\n"'
-  
