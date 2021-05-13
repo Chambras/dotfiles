@@ -13,12 +13,12 @@
   alias tfiu='terraform init -upgrade'
   alias tfa='terraform  apply --auto-approve  run.plan'
   alias tfar='terraform apply --auto-approve'
-  alias tfd='terraform destroy --auto-approve'
+  alias tfd='terraform destroy --force'
   alias tfv='terraform validate'
   alias tff='terraform fmt'
   alias tfr='terraform refresh'
   alias tfs='terraform show'
-  alias tver='clear; echo -e "Terraform version:"; terraform -v; echo "Local providers:"; la -1 ~/.terraform.d/plugin-cache/linux_amd64/'
+  alias tver='clear; echo -e "Terraform version:"; terraform -v; echo "Local providers:"; echo -e "azurerm:"; tv; echo -e "aws:"; tv aws; echo -e "google:"; tv google; echo -e "others:"; tv "null|temp|rand|loc"'
   alias tfh='terraform -help'
   alias tfpr='terraform providers'
   alias tfg='terraform graph'
@@ -26,6 +26,11 @@
   alias tsl='terraform state list'
   alias tss='terraform state show'
   alias tft='terraform taint'
+
+# function to get last 5 terraform providers
+tv() {
+  ls -1t ~/.terraform.d/plugin-cache/linux_amd64/ | grep -E "$1" | head -5
+}
 
 # packer
   alias pv='packer validate'
