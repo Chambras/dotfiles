@@ -58,8 +58,10 @@ tv() {
 # Azure
   alias agl='az group list -o table'
   alias aal='az account list -o table'
+  alias aall='az account list-locations -o table'
   alias acl='az cloud list -o table'
   alias avl='az vm list -o table'
+  alias arl='az resource list -o table -g '
 
 # Docker
   alias dcl='docker context list'

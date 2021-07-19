@@ -5,14 +5,17 @@
 	co = checkout
 	com = checkout main
 	cod = checkout dev
-	ci = commit -m
+  ci = commit -m
+  cane = commit --amend --no-edit
+	ca = !git add -A && git commit -m
 	st = status
-	br = branch
+	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
   df = diff
 	dfno = diff --name-only master dev
 	dfns = diff --name-status master dev
   rmt = remote -v
-	pl = pull
+  pl = pull
+  ps = push
 	cl = clone
 	lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
 	ln = log --graph --oneline --all
@@ -31,4 +34,4 @@
   autocrlf = input
   editor = vi
 [init]
-  defaultBranch = main
+	defaultBranch = main
