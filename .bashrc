@@ -123,12 +123,19 @@ fi
 # Show timestamp on history output
 HISTTIMEFORMAT="%F %T "
 
-complete -C /usr/local/bin/terraform terraform
-
-eval "$(gh completion -s bash)"
-
 # Login banner thing ==============
 if [ -f $HOME/.banner.rc ]; then source $HOME/.banner.rc; fi
 
 # Fancy powerlevel like prompt, remove if you don't like it, or is slow ==============
 if [ -f $HOME/.bashprompt.rc ]; then source $HOME/.bashprompt.rc; fi
+
+# Autocomplete
+complete -C /usr/local/bin/terraform terraform
+
+eval "$(gh completion -s bash)"
+
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

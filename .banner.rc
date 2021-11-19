@@ -1,5 +1,9 @@
-# Get IP addresses
-ip=$(ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+# Get eth0 IP address or fallback to local
+if command -v ip &> /dev/null; then
+  ip=$(ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+else
+  ip=$(hostname -i)
+fi
 
 # Get public IP address and cache results
 declare publicip_cache_age=99900
@@ -13,24 +17,34 @@ fi
 publicip=$(cat /tmp/publicip)
 
 # Work out where we are running
-  where="Some Linux system 🤷"
-  if [[ $(grep -oE 'gcc version ([0-9]+)' /proc/version | awk '{print $3}') -gt 5 ]] && [[ ! -z $WSL_INTEROP ]]; then where="WSL v2 💚";
-  elif [[ $(grep -oE 'gcc version ([0-9]+)' /proc/version | awk '{print $3}') -lt 5 ]]; then where="WSL v1 💙";
-  elif [[ ! -z $ACC_TERM_ID ]]; then where="Azure Cloud Shell ($ACC_LOCATION)\e[37m☁"; 
-  elif [[ -f /.dockerenv ]]; then where="Inside a Docker container 📦"; 
-  elif [[ ! -z $REMOTE_CONTAINERS_IPC ]]; then where="Inside a Devcontainer. Let's code! 💻"; 
-  elif [[ "$(lsb_release -i)" =~ "Raspbian" ]]; then where="Raspberry Pi 🍇"; 
-  elif [[ "$(lsb_release -i)" =~ "Ubuntu" ]]; then where="Ubuntu 🐧"; fi
+where="Some Linux system 🤷"
+if [[ ! -z $WSL_DISTRO_NAME ]] && [[ ! "$(uname -r)" =~ "WSL2" ]]; then where="Windows Subsystem for Linux v1 💙";
+elif [[ ! -z $WSL_INTEROP ]] && [[ "$(uname -r)" =~ "WSL2" ]]; then where="Windows Subsystem for Linux v2 💚";
+elif [[ -f /.dockerenv ]]; then where="Inside a Docker container 📦";
+elif [[ ! -z $REMOTE_CONTAINERS_IPC ]]; then where="Inside a Devcontainer. Let's code! 💻";
+elif [[ ! -z $ACC_TERM_ID ]]; then where="Azure Cloud Shell ($ACC_LOCATION)\e[37m☁";
+elif [[ $CODESPACES == "true" ]]; then where="GitHub Codespaces\e[37m🐙";
+elif [[ "$(lsb_release -i)" =~ "Raspbian" ]]; then where="Raspberry Pi 🍇";
+elif [[ "$(lsb_release -i)" =~ "Ubuntu" ]]; then where="Ubuntu 🐧"; fi
 
 # And what shell is in use (default assume Zsh + P10K)
 shelltype="🚀 Oh My Zsh \e[37m& \e[38;5;226mPowerlevel10K"
 if [[ $0 =~ "bash" ]]; then shelltype="👍 Standard \e[38;5;226mBash \e[38;5;202mShell"; fi
 
+# lsb_release might not be installed :/
+version="Unknown!"
+if test -f /etc/os-release; then
+  . /etc/os-release
+  version=$VERSION
+elif command -v lsb_release > /dev/null; then
+  version=$(lsb_release -ds)
+fi
+
 # Show the banner
 echo -e "\e[38;5;192m╭───── \e[38;5;202m$shelltype"
 echo -e "\e[38;5;155m├──❱ \e[38;5;135mEnviron: \e[38;5;45m$where"
 echo -e "\e[38;5;118m├──❱ \e[38;5;135mKernel:  \e[38;5;45m$(uname -r) 🚦"
-echo -e "\e[38;5;40m├──❱ \e[38;5;135mVersion: \e[38;5;45m$(lsb_release -ds) 😸"
+echo -e "\e[38;5;40m├──❱ \e[38;5;135mVersion: \e[38;5;45m$version 😸"
 echo -e "\e[38;5;34m├──❱ \e[38;5;135mIP:      \e[38;5;45m$ip / $publicip 📡"
 echo -e "\e[38;5;28m╰──❱ \e[38;5;135mHost:    \e[38;5;45m$(hostname) 🏠"
 echo -e ""

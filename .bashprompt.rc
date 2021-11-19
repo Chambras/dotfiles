@@ -53,23 +53,24 @@ function __git_branch {
 
   if [[ $git_status =~ $on_branch ]]; then
     local branch=${BASH_REMATCH[1]}
-    echo "$SEP🌳 $(__git_color)$branch"
+    echo "$GreenBG🌳$(__git_color)$branch "
   elif [[ $git_status =~ $on_commit ]]; then
     local commit=${BASH_REMATCH[1]}
-    echo "$SEP📜 $(__git_color)$commit"
+    echo "$GreenBG📜 $(__git_color)$commit "
   fi
 }
 
 function __serverLocation {
   # Work out where we are running
   where="Some Linux system 🤷"
-  if [[ $(grep -oE 'gcc version ([0-9]+)' /proc/version | awk '{print $3}') -gt 5 ]] && [[ ! -z $WSL_INTEROP ]]; then where="WSL v2 💚";
-  elif [[ $(grep -oE 'gcc version ([0-9]+)' /proc/version | awk '{print $3}') -lt 5 ]]; then where="WSL v1 💙";
-  elif [[ ! -z $ACC_TERM_ID ]]; then where="Azure Cloud Shell ($ACC_LOCATION)\e[37m☁";
-  elif [[ -f /.dockerenv ]]; then where="Docker container 📦";
-  elif [[ ! -z $REMOTE_CONTAINERS_IPC ]]; then where="Devcontainer 💻";
-  elif [[ "$(lsb_release -i)" =~ "Raspbian" ]]; then where="Raspberry Pi 🍇";
-  elif [[ "$(lsb_release -i)" =~ "Ubuntu" ]]; then where="Ubuntu 🐧"; fi
+  if [[ ! -z $WSL_DISTRO_NAME ]] && [[ ! "$(uname -r)" =~ "WSL2" ]]; then where="\e[38;5;26mWSLv1💙";
+  elif [[ ! -z $WSL_INTEROP ]] && [[ "$(uname -r)" =~ "WSL2" ]]; then where="\e[38;5;46mWSLv2💚";
+  elif [[ -f /.dockerenv ]]; then where="\e[38;5;45mDocker container📦";
+  elif [[ ! -z $REMOTE_CONTAINERS_IPC ]]; then where="Devcontainer💻";
+  elif [[ ! -z $ACC_TERM_ID ]]; then where="Azure Cloud Shell ($ACC_LOCATION)☁";
+  elif [[ $CODESPACES == "true" ]]; then where="GitHub Codespaces🐙";
+  elif [[ "$(lsb_release -i)" =~ "Raspbian" ]]; then where="Raspberry Pi🍇";
+  elif [[ "$(lsb_release -i)" =~ "Ubuntu" ]]; then where="\e[38;5;209mUbuntu🐧"; fi
   echo $where
 }
 
@@ -81,14 +82,16 @@ function __azure_sub {
 #    azsub=$(cat $HOME/.azure/azureProfile.json | jq -r ".subscriptions[] | select(.id==\"${BASH_REMATCH[1]}\").name")
 #    echo "$SEP\e[38;5;15m⛈🌦 \e[38;5;87m$DEV_ENVIRONMENT"
 #  fi
-if [[ ! -z $DEV_ENVIRONMENT ]]; then  echo "$SEP\e[38;5;15m☁️ \e[38;5;87m$DEV_ENVIRONMENT"; fi
+if [[ ! -z $DEV_ENVIRONMENT ]] && [[ ! "$DEV_ENVIRONMENT" =~ "Gov" ]]; then  echo " $BlueBG\e[38;5;15m☁️\e[38;5;87m$DEV_ENVIRONMENT"; 
+elif [[ ! -z $DEV_ENVIRONMENT ]] && [[ "$DEV_ENVIRONMENT" =~ "Gov" ]]; then  echo " $RedBG\e[38;5;15m☁️\e[38;5;87m$DEV_ENVIRONMENT";
+fi
 }
 
 function __docker_context {
-  if [[ ! -z $DOCKER_CONTEXT ]]; then  echo "$SEP\e[38;5;15m🐋 \e[38;5;87m$DOCKER_CONTEXT"; fi
+  if [[ ! -z $DOCKER_CONTEXT ]]; then  echo " $LightBlueBG🐋\e[38;5;226m$DOCKER_CONTEXT"; fi
 }
 
-SEP=" \e[94m┃ "
+SEP="\e[92m┃"
 
 # Show timestamp on the right hand side
 # source: https://superuser.com/questions/187455/right-align-part-of-prompt/1203400#1203400
@@ -97,7 +100,15 @@ SEP=" \e[94m┃ "
 # From: https://www.commandlinefu.com/commands/view/12043/remove-color-special-escape-ansi-codes-from-text-with-sed
 __prompt_command()
 {
+  local e="$?"
+
+  Bold='\e[1m'
   GreyBG='\e[48;5;237m'
+  PurpleBG='\e[48;5;61m'
+  GreenBG='\e[48;5;29m'
+  BlueBG='\e[48;5;4m'
+  LightBlueBG='\e[48;5;39m'
+  RedBG='\e[48;5;9m'
 #  Green='\[\e[00;22m\]'
   Green='\e[38;5;46m'
 #  White='\[\e[01;37m\]'
@@ -105,10 +116,11 @@ __prompt_command()
 #  Cyan='\[\e[00;36m\]'
   Cyan='\e[38;5;36m'
 #  Yellow='\[\e[00;33m\]'
-  Yellow='\e[38;5;3m'
+  Yellow='\e[38;5;220m'
 #  LightBlue='\[\e[00;94m\]'
   LightBlue='\e[38;5;45m'
   Blue='\e[38;5;26m'
+  User='\e[38;5;75m'
   Reset='\e[0m'
 
   # printf -v PS1RHS "\e[0m[ \e[1;31m%(%H:%M:%S)T \e[0m]" -1 # -1 is current time
@@ -134,9 +146,9 @@ __prompt_command()
   # show last command execution time
   PS1+="$GreyBG$LightBlue[⌚️${timer_show}]"
   # show user@host
-  PS1+="$Blue $(__serverLocation) $Green\u$White@$Cyan\h"
+  PS1+="$Blue $(__serverLocation) $User\u$White@$Cyan\h"
   # show current directory
-  PS1+=" 📂 $Yellow\W"
+  PS1+=" $PurpleBG📂$Yellow\W"
   # show docker context
   PS1+="$(__docker_context)"
 
@@ -149,6 +161,15 @@ __prompt_command()
   fi
 
 # Add git details
-  PS1+="$(__git_branch) \e[0m\e[38;5;22m"
+  PS1+="$(__git_branch)\e[0m\e[38;5;22m"
+  # PS1+="$(__git_branch)\[\e[0m\]\[\e[38;5;22m\]"
+
+# Status code
+  if [ $e != 0 ]; then
+     PS1+="\[\e[0m\]\[\e[38;5;197m\] ${e} 💩 "
+  else
+     PS1+="\[\e[0m\]\[\e[38;5;76m\]"
+  fi
+  #PS1+="\n⮞ $Reset"
   PS1+="$Reset \n$ "
 }

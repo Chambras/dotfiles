@@ -1,37 +1,46 @@
 [user]
-	name = Marcelo Zambrana Villarroel
-	email = marcech.am@gmail.com
+  name = Marcelo Zambrana Villarroel
+  email = marcech.am@gmail.com
 [alias]
-	co = checkout
-	com = checkout main
-	cod = checkout dev
+  sl = stash list
+  sv = stash save
+  sph = stash push -um  
+  sa = stash apply
+  sp = stash pop
+  sd = stash drop
+  sw = stash show -p
+  rb = rebase -i
+  co = checkout
+  com = checkout main
+  cod = checkout dev
   ci = commit -m
   cane = commit --amend --no-edit
-	ca = !git add -A && git commit -m
-	st = status
-	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+  ca = !git add -A && git commit -m
+  st = status
+  br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
   df = diff
-	dfno = diff --name-only master dev
-	dfns = diff --name-status master dev
+  dfno = diff --name-only main dev
+  dfns = diff --name-status main dev
   rmt = remote -v
   pl = pull
   ps = push
-	cl = clone
-	lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
-	ln = log --graph --oneline --all
-	conf = config --global -e
-	cob = checkout -b
-	pom = push -u origin main
-	pod = push -u origin dev
-	save = !git add -A && git commit -m 'SAVEPOINT'
-	la = "!git config -l | grep alias | cut -c 7-"
+  cl = clone
+  lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+  ln = log --graph --oneline --all
+  conf = config --global -e
+  cob = checkout -b
+  pom = push -u origin main
+  plom = pull origin main
+  pod = push -u origin dev
+  save = !git add -A && git commit -m 'SAVEPOINT'
+  la = "!git config -l | grep alias | cut -c 7-"
 [push]
-	default = current
+  default = current
 [color]
-	# Enable colors in color-supporting terminals
-	ui = auto
+  # Enable colors in color-supporting terminals
+  ui = auto
 [core]
   autocrlf = input
   editor = vi
 [init]
-	defaultBranch = main
+  defaultBranch = main
