@@ -66,8 +66,9 @@ tv() {
 # Docker
   alias dcl='docker context list'
   alias dcls='docker container ls --all'
+  alias dcr='docker container rm'
   alias di='docker images'
-  alias dils='docker images list'
+  alias dir='docker image rm'
   alias db='docker build'
   alias dr='docker run -it --rm'
   alias drm='docker run -it --rm --name personaldev --mount type=bind,source=/c/Repos,target=/Repos'
