@@ -68,4 +68,4 @@ cd ~
 
 ## Resources
 
-These are based on the amazing repo from [Ben Coleman](https://github.com/benc-uk). His public [dotfiles](https://github.com/benc-uk/dotfiles) repo is a lot beter with Zsh support and a lot more, check it out!
+These are based on the amazing repo from [Ben Coleman](https://github.com/benc-uk). His public [dotfiles](https://github.com/benc-uk/dotfiles) repo is a lot better with Zsh support and a lot more, check it out!

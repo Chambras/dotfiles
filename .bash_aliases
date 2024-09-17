@@ -82,7 +82,7 @@ tv() {
   alias k='kubectl'
 
 # Personal
-  alias gorepos='cd /c/Repos/'
+  alias gorepos='cd ~/Repos/'
   alias sa='cat ~/.bash_aliases'
   alias ea='vi ~/.bash_aliases'
   alias myip='dig +short myip.opendns.com @resolver1.opendns.com'

@@ -50,3 +50,9 @@ ln -s $DOTFILE_DIR/.env.rc $HOME/.bashe
 # Copying vim theme
 mkdir -p ~/.vim/colors/
 cp $DOTFILE_DIR/lib/badwolf.vim $HOME/.vim/colors/
+
+# Creating Repos Folder
+mkdir ~/Repos
+
+# Done!
+echo -e "\e[38;5;45m»»» 🪄  \e[34mInstallation complete! Changes will take effect when you open a new shell\e[0m\n"
