@@ -45,7 +45,7 @@ do
 done
 rm -f $HOME/.bashenv
 echo -e "\e[38;5;45m»»» 📃  ~/.bashenv --> $DOTFILE_DIR/.env.rc "
-ln -s $DOTFILE_DIR/.env.rc $HOME/.bashe
+ln -s $DOTFILE_DIR/.env.rc $HOME/.bashenv
 
 # Copying vim theme
 mkdir -p ~/.vim/colors/
@@ -55,4 +55,5 @@ cp $DOTFILE_DIR/lib/badwolf.vim $HOME/.vim/colors/
 mkdir ~/Repos
 
 # Done!
-echo -e "\e[38;5;45m»»» 🪄  \e[34mInstallation complete! Changes will take effect when you open a new shell\e[0m\n"
+echo -e "\e[38;5;45m»»» ✔️  \e[34mInstallation complete! Changes will take effect when you open a new shell\e[0m\n"
+echo -e "\e[38;5;45m»»» 🎉  \e[34mEnjoy your new dotfiles! 🎉\e[0m\n"
