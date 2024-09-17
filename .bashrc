@@ -132,7 +132,7 @@ if [ -f $HOME/.bashprompt.rc ]; then source $HOME/.bashprompt.rc; fi
 # Autocomplete
 complete -C /usr/local/bin/terraform terraform
 
-eval "$(gh completion -s bash)"
+# eval "$(gh completion -s bash)"
 
 
 
